@@ -15,7 +15,7 @@ public class LockSynchronizedCounter implements Counter {
     private int counter = 0;
 
     public void increment() {
-        Lock writeLock = readWriteLock.writeLock();
+        final Lock writeLock = readWriteLock.writeLock();
         try {
             writeLock.lock();
             counter++;
@@ -25,7 +25,7 @@ public class LockSynchronizedCounter implements Counter {
     }
 
     public Integer get() {
-        Lock readLock = readWriteLock.readLock();
+        final Lock readLock = readWriteLock.readLock();
         try {
             readLock.lock();
             return counter;
